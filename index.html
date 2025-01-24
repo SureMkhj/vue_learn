@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Study</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"> -->
+    <script src="https://unpkg.com/vue@3" defer></script>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue</h1>
+    </header>
+    <section id="app_vue">
+      <h2>[basic_event]</h2>
+      <input type="text" ref="tmp_name">
+      <button @click="setName" >이름 입력</button>
+      <p :text="name">name : {{ name }}</p>
+      <br>
+      <button @click="isButtonDisabled">클릭해 보세요</button>
+      <button @click="toggleDisabled">Toggle Disabled</button>
+      <br>
+      <input type="number" v-model="num">
+      <button @click="plus_counter">Add {{ num }}</button>
+      <button @click="reduce_counter">Reduce {{ num }}</button>
+      <button @click="reset">Reset</button>
+      <p>Result : {{ counter }}</p>
+      <br>
+    </section>
+    <hr>
+    <section id="app_template"></section>
+    <hr>
+    <section id="app_compute">
+      <h2>[Compute]</h2>
+      <input type="text" placeholder="First name" v-model="fname">
+      <input type="text" placeholder="Last name" v-model="lname">
+      <h4>Your name is : {{ fullname }}</h4>
+    </section>
+    <hr>
+    <section id="list_vue">
+      <h2>[v-if, v-for, css 적용]</h2>
+      <input type="text" ref="tmp_msg" @keypress.enter="add_msg" placeholder="내용을 입력하세요.">
+      <button @click="add_msg">추가하기</button>
+      <button @click="reset_msg">초기화</button>
+      <button @click="delete_list">선택 삭제</button>
+      <p v-if="lists.length === 0">내용이 없습니다. 추가해주세요.</p>
+      <ul v-else>
+        <li 
+          v-for="(msg, index) in lists"
+          :key="index"
+          :class="{ selected: selectedIndex === index, select: selectedIndex !== null }"
+          @click="select_list(index)">{{ msg }}</li>
+      </ul>
+    </section>
+    <hr>
+    <section id="tmp">
+      <h2>[뭐하지]</h2>
+      <a href="#/">Home</a> | 
+      <a href="#/about">About</a> | 
+      <a href="#/non-existent-path">잘못된 링크</a>
+      <!-- <component :is="currentView" /> -->
+    </section>
+  </body>
+</html>
